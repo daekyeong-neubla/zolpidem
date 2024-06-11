@@ -1,0 +1,12 @@
+[Unit]
+Description=Deallocate VM on shutdown
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/true
+ExecStop=bash -c "az login --identity && az vm deallocate -g neubla-ml-dev -n %H"
+
+[Install]
+WantedBy=multi-user.target
