@@ -7,7 +7,7 @@ Environment="CPU_THRESHOLD=2"
 Environment="DISK_IO_THRESHOLD=1"
 Environment="CHECK_INTERVAL=60"
 Environment="IDLE_TIME=900"
-ExecStart=/home/neubla/zolpidem/zolpidem.sh
+ExecStart=zolpidem.sh
 Restart=always
 StandardError=journal
 

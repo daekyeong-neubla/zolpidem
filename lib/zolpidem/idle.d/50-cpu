@@ -1,0 +1,9 @@
+#!/bin/bash
+
+readonly CPU_THRESHOLD="${CPU_THRESHOLD:-2}"
+
+readonly cpu_idle="$(mpstat 1 1 | awk '/Average:/ {print $NF}')"
+readonly cpu_usage="$(echo "100 - $cpu_idle" | bc)"
+echo "Current CPU usage: $cpu_usage%" >&2
+
+[ "$(echo "$cpu_usage < $CPU_THRESHOLD" | bc -l)" -ne 0 ]

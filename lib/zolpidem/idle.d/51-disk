@@ -1,0 +1,8 @@
+#!/bin/bash
+
+readonly DISK_IO_THRESHOLD="${DISK_IO_THRESHOLD:-1}"
+
+readonly io_usage="$(iostat -dx 1 1 | awk '/sda/ {print $23}')"
+echo "Current Disk I/O usage: $io_usage%" >&2
+
+[ "$(echo "$io_usage < $DISK_IO_THRESHOLD" | bc -l)" -ne 0 ]
